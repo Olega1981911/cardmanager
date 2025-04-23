@@ -1,66 +1,72 @@
-bank-card-management-system/
+# bank-card-management-system/
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   │   └── com/
-│   │   │       └── example/
-│   │   │           └── bankcard/
-│   │   │               ├── BankCardManagementApplication.java
-│   │   │               ├── config/
-│   │   │               │   ├── SecurityConfig.java
-│   │   │               │   └── SwaggerConfig.java
-│   │   │               ├── controller/
-│   │   │               │   ├── BankCardController.java
-│   │   │               │   └── TransactionController.java
-|   |   |               ├── mapper/
-|   |   |               |   ├── BankCardMapper.java
-|   |   |               |   ├── TransactionCardMapper.java
-|   |   |               |   └── UserMapper.java  
-│   │   │               ├── dto/
-│   │   │               │   ├── BankCardDTO.java
-│   │   │               │   ├── TransactionCardDTO.java
-|   |   |               |   ├── UserResponseDTO.java
-│   │   │               │   └── UserRequestDTO.java
-│   │   │               ├── entity/
-|   |   |               |   ├── TransactionCard.java  
-│   │   │               │   ├── CardStatus.java
-│   │   │               │   └── UserRole.java
-│   │   │               │   
-│   │   │               ├── enum/
-|   |   |               |   ├── AmountType.java    
-│   │   │               │   ├── CardStatus.java
-│   │   │               │   └── UserRole.java
-│   │   │               ├── exception/
-│   │   │               │   ├── ResourceNotFoundException.java
-│   │   │               │   └── ApiExceptionHandler.java
-│   │   │               ├── repository/
-│   │   │               │   ├── BankCardRepository.java
-│   │   │               │   ├── TransactionRepository.java
-│   │   │               │   └── UserRepository.java
-│   │   │               ├── security/
-│   │   │               │   ├── JwtAuthenticationFilter.java
-│   │   │               │   └── JwtUtil.java
-│   │   │               └── service/
-│   │   │                   ├── BankCardService.java
-│   │   │                   ├── TransactionService.java
-│   │   │                   └── UserService.java
+│   │   │       └── taco/
+│   │   │           └── cardmanager/
+│   │   │               ├── BankCardManagerApplication.java         # Главный класс приложения
+│   │   │               ├── config/                                 
+│   │   │               │   ├── SecurityConfig.java                # Конфиг Spring Security
+│   │   │               │   └── SwaggerConfig.java                 # Конфиг OpenAPI
+│   │   │               ├── controller/                            
+│   │   │               │   ├── BankCardController.java            
+│   │   │               │   ├── TransactionController.java         
+│   │   │               │   └── AuthController.java                # Контроллер аутентификации
+│   │   │               ├── dto/                                   
+│   │   │               │   ├── request/                           # DTO для входящих запросов
+│   │   │               │   │   ├── BankCardRequestDTO.java        
+│   │   │               │   │   ├── TransactionCardRequestDTO.java 
+│   │   │               │   │   └── UserRequestDTO.java            
+│   │   │               │   └── response/                          # DTO для исходящих ответов
+│   │   │               │       ├── BankCardResponseDTO.java       
+│   │   │               │       ├── TransactionCardResponseDTO.java
+│   │   │               │       └── UserResponseDTO.java           
+│   │   │               ├── entity/                                # Сущности JPA
+│   │   │               │   ├── BankCard.java                      
+│   │   │               │   ├── TransactionCard.java               
+│   │   │               │   └── User.java                          
+│   │   │               ├── enums/                                 # Перечисления
+│   │   │               │   ├── AmountType.java                   # DEBIT/CREDIT
+│   │   │               │   ├── CardStatus.java                   # ACTIVE/BLOCKED/EXPIRED
+│   │   │               │   └── UserRole.java                     # ADMIN/USER
+│   │   │               ├── exception/                             # Обработка ошибок
+│   │   │               │   ├── ApiError.java                     # Обертка для ошибок
+│   │   │               │   ├── GlobalExceptionHandler.java       # @ControllerAdvice
+│   │   │               │   └── ResourceNotFoundException.java    
+│   │   │               ├── mapper/                               # MapStruct мапперы
+│   │   │               │   ├── BankCardMapper.java               
+│   │   │               │   ├── TransactionCardMapper.java        
+│   │   │               │   └── UserMapper.java                   
+│   │   │               ├── repository/                           # JPA репозитории
+│   │   │               │   ├── BankCardRepository.java           
+│   │   │               │   ├── TransactionRepository.java        
+│   │   │               │   └── UserRepository.java               
+│   │   │               ├── security/                             # Безопасность
+│   │   │               │   ├── JwtAuthenticationFilter.java      
+│   │   │               │   ├── JwtTokenProvider.java             
+│   │   │               │   └── CustomUserDetails.java            # UserDetails реализация
+│   │   │               └── service/                              # Бизнес-логика
+│   │   │                   ├── BankCardService.java              
+│   │   │                   ├── TransactionService.java           
+│   │   │                   └── UserService.java                  
 │   │   └── resources/
-│   │       ├── application.properties
-│   │       ├── db/
-│   │       │   └── changelog/
-│   │       │       └── db.changelog-master.yaml
+│   │       ├── application.yml                                   # Настройки приложения
+│   │       ├── db/                                               
+│   │       │   └── changelog/                                    # Миграции Liquibase
+│   │       │       └── db.changelog-master.yaml                  
 │   │       └── static/
-│   │           └── swagger-ui/
-│   └── test/
+│   │           └── swagger-ui/                                   # Документация API
+│   └── test/                                                     # Тесты
 │       └── java/
 │           └── com/
-│               └── example/
-│                   └── bankcard/
-│                       ├── BankCardServiceTest.java
-│                       └── UserServiceTest.java
-├── build.gradle
-└── README.md
-
+│               └── taco/
+│                   └── cardmanager/
+│                       ├── service/                              
+│                       │   ├── BankCardServiceTest.java          
+│                       │   └── UserServiceTest.java              
+├── build.gradle                                                  # Конфигурация сборки
+└── README.md                                                     # Описание проекта
 
 ### Именование сущностей и DTO
 
